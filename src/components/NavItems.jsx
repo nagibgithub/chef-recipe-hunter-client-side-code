@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 
 
@@ -26,7 +26,7 @@ const NavItems = () => {
     return (
         <>
             {
-                navBar.map(nav => <li key={nav.id}><Link to={nav.path}>{nav.title}</Link></li>)
+                navBar.map(nav => <li key={nav.id}><NavLink to={nav.path}>{nav.title}</NavLink></li>)
             }
         </>
     );
