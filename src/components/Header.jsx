@@ -3,18 +3,37 @@ import {NavLink} from 'react-router-dom';
 
 const Header = () => {
 
-    const [nav, setNav] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:3000/nav')
-            .then(res => res.json())
-            .then(data => setNav(data))
-    }, [])
-
+    const navBar = [
+        {
+            id: 1,
+            title: "Home",
+            path: "/"
+        },
+        {
+            id: 2,
+            title: "About Us",
+            path: "/about"
+        },
+        {
+            id: 3,
+            title: "Log In",
+            path: "/login"
+        },
+        {
+            id: 4,
+            title: "Blog",
+            path: "/blog"
+        }
+    ]
     return (
         <div>
             {
-                nav.map(pd => <NavLink key={pd.id} to={pd.path} >{pd.title}</NavLink>)
+                navBar.map(pd => <NavLink className={({isActive, isPending}) =>
+                    isActive
+                        ? "bg-sky-300"
+                        : isPending
+                            ? "bg-gray-300"
+                            : ""} key={pd.id} to={pd.path} >{pd.title}</NavLink>)
             }
         </div>
     );
