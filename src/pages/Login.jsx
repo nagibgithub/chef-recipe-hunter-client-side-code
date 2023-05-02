@@ -1,20 +1,40 @@
 import {faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, {useContext, useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import GoogleLogIn from '../components/GoogleLogIn';
 import GitHubLogIn from '../components/GitHubLogIn';
+import {AuthContext} from '../contexts/AuthProvider';
 
 const Login = () => {
 
+    const {signIn} = useContext(AuthContext)
     const [show, setShow] = useState(false)
+    const navigate = useNavigate()
+
+    const signInHandler = event => {
+        event.preventDefault()
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        signIn(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                navigate('/')
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     return (
         <div className='login-container'>
             <div className='bg-black bg-opacity-60'>
                 <h1 className="text-2xl lg:text-5xl pt-5 text-center font-bold text-white">Login now!</h1>
                 <div className="login-form-container">
-                    <form>
+                    <form onSubmit={signInHandler}>
                         <div className="form-control py-2">
                             <label ><span className="text-white">Email</span></label>
                             <input name="email" type="email" placeholder="Email" autoComplete="username" className="input-field" required />

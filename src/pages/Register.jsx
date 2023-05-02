@@ -1,21 +1,58 @@
 import {faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, {useContext, useState} from 'react';
+import {Link, useNavigate, useNavigation} from 'react-router-dom';
 import GoogleLogIn from '../components/GoogleLogIn';
 import GitHubLogIn from '../components/GitHubLogIn';
+import {AuthContext} from '../contexts/AuthProvider';
+import "firebase/auth";
+import {createUserWithEmailAndPassword} from 'firebase/auth';
 
 const Register = () => {
 
+    const {createUser, auth} = useContext(AuthContext)
     const [show, setShow] = useState(false);
+    const navigate = useNavigate();
 
     const emailPassRegHandler = event => {
         event.preventDefault();
         const form = event.target;
-        const name = form.name.value;
+        const displayName = form.name.value;
         const email = form.email.value;
-        const photo = form.photo.value;
+        const photoURL = form.photo.value;
         const password = form.password.value;
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // User is created, now update the displayName
+                const user = userCredential.user;
+                return user.updateProfile({
+                    displayName: "John Doe"
+                })
+            })
+            .then(() => {
+                // User's displayName has been updated
+            })
+            .catch((error) => {
+                // Handle errors
+            });
+
+
+        // createUser(email, password)
+        //     .then((userCredential) => {
+        //         const user = userCredential.user;
+        //         // navigate('/')
+        //         return user.updateProfile({
+        //             displayName: displayName
+        //         })
+
+        //     })
+        //     .catch((error) => {
+        //         const errorCode = error.code;
+        //         const errorMessage = error.message;
+        //         console.log(errorCode, errorMessage);
+        //     });
+
     }
 
     return (
