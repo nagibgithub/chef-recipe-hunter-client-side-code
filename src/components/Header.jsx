@@ -1,41 +1,37 @@
 import React, {useEffect, useState} from 'react';
-import {NavLink} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
+import NavItems from './NavItems';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faBars, faXmark} from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
 
-    const navBar = [
-        {
-            id: 1,
-            title: "Home",
-            path: "/"
-        },
-        {
-            id: 2,
-            title: "About Us",
-            path: "/about"
-        },
-        {
-            id: 3,
-            title: "Log In",
-            path: "/login"
-        },
-        {
-            id: 4,
-            title: "Blog",
-            path: "/blog"
-        }
-    ]
+    const [isTrue, setIsTrue] = useState(false)
+
     return (
-        <div>
-            {
-                navBar.map(pd => <NavLink className={({isActive, isPending}) =>
-                    isActive
-                        ? "bg-sky-300"
-                        : isPending
-                            ? "bg-gray-300"
-                            : ""} key={pd.id} to={pd.path} >{pd.title}</NavLink>)
-            }
-        </div>
+        <nav className='container mx-auto'>
+            <div className="navbar bg-base-100">
+                <div className="navbar-start">
+                    <div className="dropdown">
+                        <label onClick={()=>setIsTrue(!isTrue)} tabIndex={0} className="btn btn-ghost lg:hidden">
+                            <FontAwesomeIcon className='h-7 w-7' icon={!isTrue? faBars : faXmark} />
+                        </label>
+                        <ul onClick={() => setIsTrue(false)} tabIndex={0} className={`${ !isTrue ? 'hidden' : ''} z-50 absolute menu menu-compact mt-3 p-2 shadow-md bg-base-200 rounded-box w-52`}>
+                            <NavItems></NavItems>
+                        </ul>
+                    </div>
+                    <Link to={'/'}><img className='w-44' src={'name.png'} alt="" /></Link>
+                </div>
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal px-1">
+                        <NavItems></NavItems>
+                    </ul>
+                </div>
+                <div className="navbar-end">
+                    <Link to={'/login'} className="btn">Log In</Link>
+                </div>
+            </div>
+        </nav>
     );
 };
 
