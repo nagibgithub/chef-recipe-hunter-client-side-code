@@ -2,12 +2,12 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import NavItems from './NavItems';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faBars, faXmark} from '@fortawesome/free-solid-svg-icons';
+import {faBars, faCircleUser, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {AuthContext} from '../contexts/AuthProvider';
 
 const Header = () => {
     const {user, logOut} = useContext(AuthContext)
-    console.log(user);
+    // console.log(user);
 
     const [isTrue, setIsTrue] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
@@ -38,9 +38,14 @@ const Header = () => {
                         user ?
                             <>
                                 <div className='dropdown flex items-center'>
-                                    <div data-tip={user.displayName} className='tooltip tooltip-left'>
-                                        <img className='w-12 h-12 rounded-full border-2 border-black' src={user.photoURL} alt="" />
-                                    </div>
+                                    {
+                                        user.photoURL ?
+                                            <div data-tip={user.displayName} className='tooltip tooltip-left'>
+                                                <img className='w-12 h-12 rounded-full border-2 border-black' src={user.photoURL} alt="User Photo" />
+                                            </div>
+                                            :
+                                            <div data-tip={user.displayName} className='tooltip tooltip-left'><FontAwesomeIcon className='w-12 h-12 text-gray-700' icon={faCircleUser} /></div>
+                                    }
                                     <button onClick={handleLogout} className='btn ml-2'>Log Out</button>
                                 </div>
                             </>

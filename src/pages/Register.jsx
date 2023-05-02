@@ -30,7 +30,7 @@ const Register = () => {
                         </div>
                         <div className="form-control py-2">
                             <label><span className="text-white">Email</span></label>
-                            <input name="email" type="email" placeholder="email" className="input-field" autoComplete="current-email" required />
+                            <input name="email" type="email" placeholder="Email" className="input-field" autoComplete="current-email" required />
                         </div>
                         <div className="form-control py-2">
                             <label><span className="text-white">Photo URL</span></label>
@@ -38,11 +38,11 @@ const Register = () => {
                         </div>
                         <div className="form-control py-2">
                             <label><span className="text-white">Password <FontAwesomeIcon icon={show ? faEye : faEyeSlash}></FontAwesomeIcon></span></label>
-                            <input name="password" type={show ? 'text' : 'password'} placeholder="password" className="input-field" autoComplete="new-password" required />
+                            <input name="password" type={show ? 'text' : 'password'} placeholder="Password" className="input-field" autoComplete="new-password" required />
                         </div>
                         <div className="form-control py-2">
                             <label><span className="text-white">Confirm Password <FontAwesomeIcon icon={show ? faEye : faEyeSlash}></FontAwesomeIcon></span></label>
-                            <input name="confirm" type={show ? 'text' : 'password'} placeholder="retype your password" className="input-field" autoComplete="new-password" required />
+                            <input name="confirm" type={show ? 'text' : 'password'} placeholder="Re-type your password" className="input-field" autoComplete="new-password" required />
                         </div>
                         <div onClick={() => setShow(!show)} className="text-white cursor-pointer my-2 w-max">{show ? "Hide" : "Show"} Password</div>
                         <div className="form-control py-2">
