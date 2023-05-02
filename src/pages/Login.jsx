@@ -9,6 +9,8 @@ import {sendPasswordResetEmail} from 'firebase/auth';
 
 const Login = () => {
 
+    const [errorMessage, setErrorMessage] = useState('')
+
     const {signIn, auth} = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const emailRef = useRef();
@@ -22,15 +24,17 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+        setErrorMessage('')
 
         signIn(email, password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
+                setErrorMessage('')
                 navigate(from, {replace: true})
             })
             .catch(error => {
                 console.log(error);
+                setErrorMessage(error.message)
             })
     }
 
@@ -42,10 +46,12 @@ const Login = () => {
         sendPasswordResetEmail(auth, email)
             .then(() => {
                 alert('Please check your email')
+                setErrorMessage('')
             })
             .catch(error => {
                 console.log(error);
-                setError(error.message)
+                // setError(error.message)
+                setErrorMessage(error.message)
             })
     }
 
@@ -63,7 +69,12 @@ const Login = () => {
                             <label ><span className="text-white">Password <FontAwesomeIcon icon={show ? faEye : faEyeSlash}></FontAwesomeIcon></span></label>
                             <input name="password" type={show ? 'text' : 'password'} autoComplete="current-password" placeholder="Password" className="input-field" required />
                             <div onClick={() => setShow(!show)} className="text-white cursor-pointer my-2 w-max">{show ? "Hide" : "Show"} Password</div>
-                            <label ><a href="#" className="text-white link-hover">Forgot password? <span onClick={handleResetPass}>you can reset your password</span></a></label>
+                            <div>
+                                {
+                                    errorMessage && <h1 className='font-bold text-xl text-red-500'>{errorMessage}</h1>
+                                }
+                            </div>
+                            <label ><h1 href="#" className="text-white link-hover">Forgot password? <span onClick={handleResetPass} className='cursor-pointer'>you can reset your password</span></h1></label>
                         </div>
                         <div className="form-control py-2">
                             <input className="btn btn-primary" type="submit" value="Log In" />
