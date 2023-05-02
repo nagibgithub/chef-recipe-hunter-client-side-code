@@ -10,7 +10,7 @@ const Header = () => {
     // console.log(user);
 
     const [isTrue, setIsTrue] = useState(false);
-    const [showProfile, setShowProfile] = useState(false);
+    // const [showProfile, setShowProfile] = useState(false);
     const handleLogout = () => {
         logOut()
     }
@@ -44,7 +44,7 @@ const Header = () => {
                                                 <img className='w-12 h-12 rounded-full border-2 border-black' src={user.photoURL} alt="User Photo" />
                                             </div>
                                             :
-                                            <div data-tip={user.displayName} className='tooltip tooltip-left'><FontAwesomeIcon className='w-12 h-12 text-gray-700' icon={faCircleUser} /></div>
+                                            <div data-tip={user.displayName || user.email} className='tooltip tooltip-left'><FontAwesomeIcon className='w-12 h-12 text-gray-700' icon={faCircleUser} /></div>
                                     }
                                     <button onClick={handleLogout} className='btn ml-2'>Log Out</button>
                                 </div>

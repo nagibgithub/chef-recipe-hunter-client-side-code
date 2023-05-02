@@ -6,12 +6,14 @@ import GoogleLogIn from '../components/GoogleLogIn';
 import GitHubLogIn from '../components/GitHubLogIn';
 import {AuthContext} from '../contexts/AuthProvider';
 import "firebase/auth";
-import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 
 const Register = () => {
 
-    const {createUser, auth} = useContext(AuthContext)
+    const {createUser, auth} = useContext(AuthContext);
+    const [errorMessage, setErrorMessage] = useState('');
     const [show, setShow] = useState(false);
+    const [accepted, setAccepted] = useState(false);
     const navigate = useNavigate();
 
     const emailPassRegHandler = event => {
@@ -21,38 +23,62 @@ const Register = () => {
         const email = form.email.value;
         const photoURL = form.photo.value;
         const password = form.password.value;
+        const confirm = form.confirm.value;
+        setErrorMessage('')
 
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // User is created, now update the displayName
-                const user = userCredential.user;
-                return user.updateProfile({
-                    displayName: "John Doe"
-                })
-            })
-            .then(() => {
-                // User's displayName has been updated
+        if (password !== confirm) {
+            setErrorMessage('')
+            setErrorMessage("Password don't match")
+            return;
+        }
+
+        if (!/(?=.*[a-z])/.test(password)) {
+            setErrorMessage('Please add at least one alphabet');
+            return;
+        }
+        else if (!/(?=.*[0-9].*[0-9])/.test(password)) {
+            setErrorMessage('Please add at least two numbers');
+            return
+        }
+        else if (password.length < 6) {
+            setErrorMessage('Please add at least 6 characters in your password')
+            return;
+        }
+
+
+
+
+        createUser(email, password)
+            .then((result) => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                updateUserData(result.user, displayName, photoURL);
+                setErrorMessage('')
+                navigate('/')
             })
             .catch((error) => {
-                // Handle errors
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
             });
 
+    }
 
-        // createUser(email, password)
-        //     .then((userCredential) => {
-        //         const user = userCredential.user;
-        //         // navigate('/')
-        //         return user.updateProfile({
-        //             displayName: displayName
-        //         })
+    const updateUserData = (user, displayName, photoURL) => {
+        updateProfile(user, {
+            displayName: displayName,
+            photoURL: photoURL
+        })
+            .then(() => {
+                console.log('user name updated')
+            })
+            .catch(error => {
+                setError(error.message);
+            })
+    }
 
-        //     })
-        //     .catch((error) => {
-        //         const errorCode = error.code;
-        //         const errorMessage = error.message;
-        //         console.log(errorCode, errorMessage);
-        //     });
-
+    const handleAccepted = event => {
+        setAccepted(event.target.checked)
     }
 
     return (
@@ -82,8 +108,19 @@ const Register = () => {
                             <input name="confirm" type={show ? 'text' : 'password'} placeholder="Re-type your password" className="input-field" autoComplete="new-password" required />
                         </div>
                         <div onClick={() => setShow(!show)} className="text-white cursor-pointer my-2 w-max">{show ? "Hide" : "Show"} Password</div>
+                        <div className="form-control">
+                            <label className="cursor-pointer flex items-center">
+                                <input onClick={handleAccepted} type="checkbox" className="checkbox checkbox-primary" />
+                                <span className="text-white ml-2 text-lg">Accept our all <Link className='link-hover font-bold text-[#ff2222] text-xl' to={'/terms_conditions'}>terms and conditions</Link></span>
+                            </label>
+                        </div>
+                        <div className='text-center text-red-500 text-xl font-semibold my-2'>
+                            {
+                                errorMessage && errorMessage
+                            }
+                        </div>
                         <div className="form-control py-2">
-                            <input name="submit" className="btn btn-primary" type="submit" value="Sign Up" />
+                            <input disabled={!accepted} name="submit" className="btn btn-primary" type="submit" value="Sign Up" />
                         </div>
                     </form>
                     <hr />

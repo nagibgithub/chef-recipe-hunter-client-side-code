@@ -1,15 +1,18 @@
 import {faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import React, {useContext, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import GoogleLogIn from '../components/GoogleLogIn';
 import GitHubLogIn from '../components/GitHubLogIn';
 import {AuthContext} from '../contexts/AuthProvider';
+import {sendPasswordResetEmail} from 'firebase/auth';
 
 const Login = () => {
 
-    const {signIn} = useContext(AuthContext);
+    const {signIn, auth} = useContext(AuthContext);
     const [show, setShow] = useState(false);
+    const emailRef = useRef();
+
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -31,6 +34,21 @@ const Login = () => {
             })
     }
 
+    const handleResetPass = event => {
+        const email = emailRef.current.value;
+        if (!email) {
+            alert('plz type your email')
+        }
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                alert('Please check your email')
+            })
+            .catch(error => {
+                console.log(error);
+                setError(error.message)
+            })
+    }
+
     return (
         <div className='login-container'>
             <div className='bg-black bg-opacity-60'>
@@ -39,13 +57,13 @@ const Login = () => {
                     <form onSubmit={signInHandler}>
                         <div className="form-control py-2">
                             <label ><span className="text-white">Email</span></label>
-                            <input name="email" type="email" placeholder="Email" autoComplete="username" className="input-field" required />
+                            <input name="email" type="email" ref={emailRef} placeholder="Email" autoComplete="username" className="input-field" required />
                         </div>
                         <div className="form-control py-2">
                             <label ><span className="text-white">Password <FontAwesomeIcon icon={show ? faEye : faEyeSlash}></FontAwesomeIcon></span></label>
                             <input name="password" type={show ? 'text' : 'password'} autoComplete="current-password" placeholder="Password" className="input-field" required />
                             <div onClick={() => setShow(!show)} className="text-white cursor-pointer my-2 w-max">{show ? "Hide" : "Show"} Password</div>
-                            <label ><a href="#" className="text-white link-hover">Forgot password?</a></label>
+                            <label ><a href="#" className="text-white link-hover">Forgot password? <span onClick={handleResetPass}>you can reset your password</span></a></label>
                         </div>
                         <div className="form-control py-2">
                             <input className="btn btn-primary" type="submit" value="Log In" />
