@@ -16,7 +16,7 @@ const Header = () => {
                         <label onClick={()=>setIsTrue(!isTrue)} tabIndex={0} className="btn btn-ghost lg:hidden">
                             <FontAwesomeIcon className='h-7 w-7' icon={!isTrue? faBars : faXmark} />
                         </label>
-                        <ul onClick={() => setIsTrue(false)} tabIndex={0} className={`${ !isTrue ? 'hidden' : ''} z-50 absolute menu menu-compact mt-3 p-2 shadow-md bg-base-200 rounded-box w-52`}>
+                        <ul onClick={() => setIsTrue(false)} tabIndex={0} className={`${ !isTrue ? 'hidden' : ''} dropdown-content menu menu-compact mt-3 p-2 shadow-md bg-base-200 rounded-box w-52`}>
                             <NavItems></NavItems>
                         </ul>
                     </div>

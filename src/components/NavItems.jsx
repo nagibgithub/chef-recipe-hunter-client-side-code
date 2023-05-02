@@ -26,7 +26,7 @@ const NavItems = () => {
     return (
         <>
             {
-                navBar.map(nav => <li><Link key={nav.id} to={nav.path}>{nav.title}</Link></li>)
+                navBar.map(nav => <li key={nav.id}><Link to={nav.path}>{nav.title}</Link></li>)
             }
         </>
     );

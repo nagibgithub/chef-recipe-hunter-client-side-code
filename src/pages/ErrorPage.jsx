@@ -11,8 +11,10 @@ export default function ErrorPage () {
             <p>
                 <i className="font-bold text-xl">{error.data}</i>
                 <br />
-                <i>Page is {error.statusText || error.message}</i>
-                <p className="text-[#ff0000] text-lg my-2 py-2 font-black tracking-wide">Error Status: {error.status}</p>
+                <i className="font-bold text-xl">Page is {error.statusText || error.message}</i>
+                {
+                    error.status && <p className="text-[#ff0000] text-lg my-2 py-2 font-black tracking-wide">Error Status: {error.status}</p>
+                }
             </p>
             <Link to='/'><button className="px-4 py-2 mb-5 mt-2 bg-sky-500 rounded-md text-white hover:bg-sky-600 active:bg-sky-700">Go to Radhuni Home Page</button></Link>
         </div>

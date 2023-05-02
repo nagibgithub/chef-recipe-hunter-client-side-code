@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-items a {
+    @apply px-4 py-2
+}
+
+.input-field {
+    @apply bg-white bg-opacity-20 focus:bg-white focus:placeholder:text-black font-semibold focus:text-blue-700 text-white px-4 py-2 text-lg rounded-md border-2 border-white placeholder:text-white active:bg-white bg-white bg-opacity-20 focus:bg-white focus:placeholder:text-black font-semibold focus:text-blue-700 px-4 py-2 text-lg rounded-md border-2 border-white placeholder:text-white active:bg-white bg-white bg-opacity-20 focus:bg-white focus:placeholder:text-black font-semibold focus:text-blue-700 text-white px-4 py-2 text-lg rounded-md border-2 border-white placeholder:text-white active:bg-white bg-white bg-opacity-20 focus:bg-white focus:placeholder:text-black font-semibold focus:text-blue-700 text-white px-4 py-2 text-lg rounded-md border-2 border-white placeholder:text-white active:bg-white
+}
+
+.google-signin-button {
+    @apply mt-2 border-2 rounded-lg w-full text-center py-2 px-4 flex justify-center items-center hover:bg-sky-300 hover:bg-opacity-25 active:bg-opacity-50
+}
+
+.login-container{
+    @apply bg-[url("https://img.freepik.com/free-photo/penne-pasta-tomato-sauce-with-chicken-tomatoes-wooden-table_2829-19744.jpg?w=740&t=st=1683010922~exp=1683011522~hmac=dba7b19284d80d14277df7d4d51c969175fe0b574e50606f640d2c778838f0c2")] bg-no-repeat bg-cover
+}
+
+.login-form-container{
+    @apply lg:w-1/2 xl:w-1/3 mx-auto my-5 backdrop-blur-lg rounded-2xl border-2 border-white shadow-lg shadow-white p-8
+}
