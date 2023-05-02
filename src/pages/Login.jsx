@@ -1,19 +1,21 @@
 import {faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import React, {useContext, useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import GoogleLogIn from '../components/GoogleLogIn';
 import GitHubLogIn from '../components/GitHubLogIn';
 import {AuthContext} from '../contexts/AuthProvider';
 
 const Login = () => {
 
-    const {signIn} = useContext(AuthContext)
-    const [show, setShow] = useState(false)
-    const navigate = useNavigate()
+    const {signIn} = useContext(AuthContext);
+    const [show, setShow] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const signInHandler = event => {
-        event.preventDefault()
+        event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
@@ -22,7 +24,7 @@ const Login = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                navigate('/')
+                navigate(from, {replace: true})
             })
             .catch(error => {
                 console.log(error);

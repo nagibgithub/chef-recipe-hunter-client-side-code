@@ -7,7 +7,7 @@ import {AuthContext} from '../contexts/AuthProvider';
 
 const Header = () => {
     const {user, logOut} = useContext(AuthContext)
-    console.log(user);
+    // console.log(user);
 
     const [isTrue, setIsTrue] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
