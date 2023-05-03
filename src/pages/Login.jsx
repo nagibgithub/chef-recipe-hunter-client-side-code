@@ -10,6 +10,7 @@ import {sendPasswordResetEmail} from 'firebase/auth';
 const Login = () => {
 
     const [errorMessage, setErrorMessage] = useState('')
+    // const [logInMessage, setlogInMessage] = useState('')
 
     const {signIn, auth} = useContext(AuthContext);
     const [show, setShow] = useState(false);
@@ -18,6 +19,14 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+
+    // console.log(from);
+    // if (from === '/about') {
+    //     console.log(true);
+    //     setlogInMessage('You have To Login first to go About Us page')
+    // }
+
+
 
     const signInHandler = event => {
         event.preventDefault();
@@ -31,6 +40,7 @@ const Login = () => {
                 const loggedUser = result.user;
                 setErrorMessage('')
                 navigate(from, {replace: true})
+
             })
             .catch(error => {
                 console.log(error);
@@ -57,10 +67,13 @@ const Login = () => {
 
     return (
         <div className='login-container'>
-            <div className='bg-black bg-opacity-60'>
-                <h1 className="text-2xl lg:text-5xl pt-5 text-center font-bold text-white">Login now!</h1>
+            <div className='bg-black bg-opacity-60 pb-10'>
+                <h1 className='text-2xl lg:text-3xl pt-3 pb-2 text-center font-bold text-white'>
+                    {from != '/' ? `You have to Login first to go "${ from }" Page` : "Welcome to Login Form page"}
+                </h1>
                 <div className="login-form-container">
                     <form onSubmit={signInHandler}>
+                        <h1 className='text-xl lg:text-3xl text-center font-bold text-white'>Login Form</h1>
                         <div className="form-control py-2">
                             <label ><span className="text-white">Email</span></label>
                             <input name="email" type="email" ref={emailRef} placeholder="Email" autoComplete="username" className="input-field" required />
