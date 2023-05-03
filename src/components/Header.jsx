@@ -7,10 +7,7 @@ import {AuthContext} from '../contexts/AuthProvider';
 
 const Header = () => {
     const {user, logOut} = useContext(AuthContext)
-    // console.log(user);
-
     const [isTrue, setIsTrue] = useState(false);
-    // const [showProfile, setShowProfile] = useState(false);
     const handleLogout = () => {
         logOut()
     }
@@ -26,7 +23,7 @@ const Header = () => {
                             <NavItems></NavItems>
                         </ul>
                     </div>
-                    <Link to={'/'}><img className='w-44' src={'name.png'} alt="" /></Link>
+                    <Link to={'/'}><img className='w-44' src={'/name.png'} alt="" /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

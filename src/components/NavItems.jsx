@@ -18,6 +18,11 @@ const NavItems = () => {
         },
         {
             id: 3,
+            title: "All Chefs",
+            path: "/chefs"
+        },
+        {
+            id: 4,
             title: "Blog",
             path: "/blog"
         }

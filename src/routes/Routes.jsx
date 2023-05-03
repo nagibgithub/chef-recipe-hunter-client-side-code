@@ -5,8 +5,10 @@ import About from "../pages/About";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ErrorPage from "../pages/ErrorPage";
-import PrivateRoute from "./PrivateRoute";
 import TermsConditions from "../pages/TermsConditions";
+import AllChef from "../pages/AllChef";
+import PrivateRoute from "./PrivateRoute";
+import ChefRecipes from "../pages/ChefRecipes";
 
 const router = createBrowserRouter([
     {
@@ -16,11 +18,12 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Home></Home>
+                element: <Home></Home>,
+                loader: () => fetch('https://radhuni-server-nagibgithub.vercel.app/chefs')
             },
             {
                 path: "/about",
-                element: <PrivateRoute><About></About></PrivateRoute>
+                element: <About></About>
             },
             {
                 path: "/login",
@@ -33,9 +36,19 @@ const router = createBrowserRouter([
             {
                 path: "/terms_conditions",
                 element: <TermsConditions></TermsConditions>
+            },
+            {
+                path: "/chefs",
+                element: <AllChef></AllChef>,
+                loader: () => fetch('https://radhuni-server-nagibgithub.vercel.app/chefs')
+            },
+            {
+                path: "/recipes/:recipeId",
+                element: <PrivateRoute><ChefRecipes></ChefRecipes></PrivateRoute>,
+                loader: ({params}) => fetch(`https://radhuni-server-nagibgithub.vercel.app/chefs/${ params.recipeId }`)
             }
         ]
-        
+
     }
 ])
 

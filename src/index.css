@@ -27,5 +27,5 @@
 }
 
 .footer-social-image img {
-    @apply h-8 w-auto
+    @apply h-8 w-auto 
 }

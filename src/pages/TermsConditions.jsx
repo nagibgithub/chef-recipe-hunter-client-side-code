@@ -1,10 +1,27 @@
+import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 const TermsConditions = () => {
+
+    const locationHistory = useLocation()
+    console.log(locationHistory);
+
+    const historyBack = () => {
+        history.back()
+    }
+
+
+
     return (
         <div className='lg:container px-6 py-3 mb-5 border-2 rounded-lg mt-5 border-gray-400 w-max mx-auto shadow-lg'>
+            <div className='flex justify-evenly'>
+                <button className='btn btn-primary' onClick={() => historyBack()}> <span><FontAwesomeIcon icon={faArrowLeft} /></span> <span className='pl-3'> Go to Previous Page</span></button>
+                <Link to={'/'}><button className='btn btn-primary'>Go to Home Page</button></Link>
+            </div>
             <div className='lg:container whitespace-normal mx-auto text-sm font-semibold'>
+                <br />
                 <h1>Terms and Conditions</h1>
 
                 <h1>Welcome to Test of Radhuni (the "Website"). By accessing or using the Website, you agree to be bound by these Terms and Conditions ("Terms").</h1>
@@ -41,8 +58,14 @@ const TermsConditions = () => {
 
                 <h1>Changes to Terms</h1>
                 <h1>8.1. We may modify these Terms at any time by posting the revised Terms on the Website. Your continued use of the Website after the posting of the revised Terms</h1>
-                <div className='text-center whitespace-normal container text-sm lg:text-xl font-bold text-blue-900 px-6 py-3 mb-5 border-2 rounded-lg mt-5 border-gray-400 w-max mx-auto shadow-lg'>accept our Terms and Conditions? <br /><Link className='link-hover font-extrabold text-red-700 hover:text-blue-950' to={'/register'}>Create an Id</Link> or <Link className='link-hover font-extrabold text-red-700 hover:text-blue-950' to={'/'}>go to Home Page</Link></div>
-        </div>
+                <div className='text-center whitespace-normal container text-sm lg:text-xl font-bold text-blue-900 px-6 py-3 mb-5 border-2 rounded-lg mt-5 border-gray-400 w-full mx-auto shadow-lg'>accept our Terms and Conditions?
+                    <div className='flex justify-evenly w-full'>
+                        <button className='btn btn-primary' onClick={() => historyBack()}> <span><FontAwesomeIcon icon={faArrowLeft} /></span> <span className='pl-3'> Go to Previous Page</span></button>
+                        <Link to={'/'}><button className='btn btn-primary'>Go to Home Page</button></Link>
+                    </div>
+                </div>
+
+            </div>
         </div>
     );
 };

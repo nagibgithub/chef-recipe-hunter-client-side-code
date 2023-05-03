@@ -87,7 +87,7 @@ const Login = () => {
                                     errorMessage && <h1 className='font-bold text-xl text-red-500'>{errorMessage}</h1>
                                 }
                             </div>
-                            <label ><h1 href="#" className="text-white link-hover">Forgot password? <span onClick={handleResetPass} className='cursor-pointer'>you can reset your password</span></h1></label>
+                            <label ><h1 href="#" className="text-white">Forgot password? <span onClick={handleResetPass} className='cursor-pointer link-hover text-[#ff2222] font-bold text-lg'>you can reset your password</span></h1></label>
                         </div>
                         <div className="form-control py-2">
                             <input className="btn btn-primary" type="submit" value="Log In" />
