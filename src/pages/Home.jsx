@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div className='container mx-auto'>
-      <section className='flex flex-col-reverse lg:grid lg:grid-cols-2'>
+      <section className='flex flex-col-reverse lg:grid lg:grid-cols-2 min-h-screen'>
         <div className='flex flex-col justify-evenly'>
           <h1 className='text-2xl lg:text-4xl font-semibold text-violet-700'>Bangladesh's Finest Chefs: Discover Authentic Recipes from Across the Country</h1>
           <p>Explore a culinary journey through Bangladesh with our collection of recipes from the country's most talented chefs. From traditional dishes to modern twists, discover the diverse flavors and rich cultural heritage of Bangladesh's cuisine, all in one place.</p>
@@ -21,7 +21,7 @@ const Home = () => {
       </section>
 
       {/* Chef Section */}
-      <section>
+      <section className='mb-10 min-h-screen'>
         <div>
           <h1 className='text-center text-2xl lg:text-3xl font-bold'>Bangladesh Top Famous Chefs are here ...</h1>
         </div>
