@@ -9,6 +9,7 @@ import TermsConditions from "../pages/TermsConditions";
 import AllChef from "../pages/AllChef";
 import PrivateRoute from "./PrivateRoute";
 import ChefRecipes from "../pages/ChefRecipes";
+import Blog from "../pages/Blog";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
             {
                 path: "/terms_conditions",
                 element: <TermsConditions></TermsConditions>
+            },
+            {
+                path: "/blog",
+                element: <Blog></Blog>
             },
             {
                 path: "/chefs",

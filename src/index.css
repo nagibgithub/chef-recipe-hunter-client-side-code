@@ -39,3 +39,7 @@
     gap: 1rem;
     padding: 1rem;
 }
+
+.home-bold-font{
+    @apply text-center text-2xl lg:text-3xl font-bold
+}
