@@ -1,6 +1,7 @@
 import React from 'react';
 import {useLoaderData} from 'react-router-dom';
 import RecipeCard from '../components/RecipeCard';
+import LazyLoad from 'react-lazy-load';
 
 const ChefRecipes = () => {
 
@@ -27,7 +28,9 @@ const ChefRecipes = () => {
 
                     <section className='lg:grid lg:grid-cols-3 items-center my-10'>
                         <div className='lg:col-span-1'>
-                            <img className='border-4 rounded-full backdrop-blur-3xl h-96 w-96 mx-auto' src={picture} alt="" />
+                            {/* <LazyLoad height={762}> */}
+                                <img className='border-4 rounded-full backdrop-blur-3xl h-96 w-96 mx-auto' src={picture} alt="" />
+                            {/* </LazyLoad> */}
                         </div>
                         <div className='lg:col-span-2 border-2 px-4 py-2 rounded-xl shadow-xl lg:mr-10 backdrop-blur-3xl'>
                             <div className='w-full text-white'>
@@ -75,8 +78,8 @@ const ChefRecipes = () => {
 
                 </div>
 
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 
