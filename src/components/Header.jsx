@@ -34,7 +34,7 @@ const Header = () => {
                     {
                         user ?
                             <>
-                                <div className='dropdown flex items-center'>
+                                <div className='flex items-center'>
                                     {
                                         user.photoURL ?
                                             <div data-tip={user.displayName} className='tooltip tooltip-left'>

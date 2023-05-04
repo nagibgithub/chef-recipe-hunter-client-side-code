@@ -23,9 +23,19 @@
 }
 
 .footer-social-image{
-    @apply w-16 h-14 border-2 border-slate-800 hover:border-white flex justify-center items-center rounded-full
+    @apply w-16 h-14 border-2 border-slate-800 hover:border-white flex justify-center items-center rounded-full tooltip tooltip-top
 }
 
 .footer-social-image img {
     @apply h-8 w-auto 
+}
+
+.hero-contents {
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* max-width: 80rem; */
+    gap: 1rem;
+    padding: 1rem;
 }

@@ -9,11 +9,11 @@ const Footer = () => {
                 <p className='py-1 text-sm pr-10'>Test of Radhuni is a Website for you where famous chefs recipes are shown for you. It is our pleaser that we provide some good recipes for you. Thank You for visiting our site.</p>
                 <h1 className='footer-title'>Follow Us</h1>
                 <div className='flex w-full'>
-                    <Link to={'https://www.facebook.com/NMFuadBD'}><div className='footer-social-image'><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="" /></div></Link>
-                    <Link to={'https://twitter.com/NMFuadBD'}><div className='footer-social-image'><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="" /></div></Link>
-                    <Link to={'https://www.instagram.com/nmfuadbd/'}><div className='footer-social-image'><img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="" /></div></Link>
-                    <Link to={'https://github.com/nagibgithub'}><div className='footer-social-image'><img className='invert' src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="" /></div></Link>
-                    <Link to={'https://www.youtube.com/@nmfuadbd/'}><div className='footer-social-image'><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="" /></div></Link>
+                    <Link to={'https://www.facebook.com/NMFuadBD'}><div data-tip='facebook' className='footer-social-image'><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="" /></div></Link>
+                    <Link to={'https://twitter.com/NMFuadBD'}><div data-tip='twitter' className='footer-social-image'><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="" /></div></Link>
+                    <Link to={'https://www.instagram.com/nmfuadbd/'}><div data-tip='instagram' className='footer-social-image'><img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="" /></div></Link>
+                    <Link to={'https://github.com/nagibgithub'}><div data-tip='github' className='footer-social-image'><img className='invert' src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="" /></div></Link>
+                    <Link to={'https://www.youtube.com/@nmfuadbd/'}><div data-tip='youtube' className='footer-social-image'><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="" /></div></Link>
                 </div>
 
             </div>
